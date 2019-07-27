@@ -49,17 +49,9 @@ typedef unsigned int UI;
 typedef long double LD;
 
 int main() {
-    int a, b;
-    cin >> a >> b;
-    if (a == b) {
-        cout << a << endl;
-        return 0;
-    }
-    int d = abs(b - a);
-    if (d % 2 != 0) {
-        cout << "IMPOSSIBLE" << endl;
-        return 0;
-    }
-    cout << min(a, b) + d / 2 << endl;
+    int n, d;
+    cin >> n >> d;
+    int s = 2 * d + 1;
+    cout << ceil(n / (float)s) <<endl;
     return 0;
 }

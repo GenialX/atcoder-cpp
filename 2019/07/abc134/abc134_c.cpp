@@ -49,17 +49,15 @@ typedef unsigned int UI;
 typedef long double LD;
 
 int main() {
-    int a, b;
-    cin >> a >> b;
-    if (a == b) {
-        cout << a << endl;
-        return 0;
+    int n;
+    vector<int> data;
+    cin >> n;
+    priority_queue<int, vector<int>, less<int> > pq;
+    unordered_map<int, int> v2cnt;
+
+    for (int i = 0, t = 0; i < n ; ++i) {
+        cin >> t;
+        data.push_back(t);
     }
-    int d = abs(b - a);
-    if (d % 2 != 0) {
-        cout << "IMPOSSIBLE" << endl;
-        return 0;
-    }
-    cout << min(a, b) + d / 2 << endl;
     return 0;
 }

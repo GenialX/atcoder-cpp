@@ -49,5 +49,20 @@ typedef unsigned int UI;
 typedef long double LD;
 
 int main() {
+    int n = 0;
+    vector<int> nums{}, sorted_nums{};
+    cin >> n;
+    for (int i = 0, t = 0; i < n; ++i) {
+        cin >> t;
+        nums.push_back(t);
+    }
+    sorted_nums = nums;
+    sort(sorted_nums.begin(), sorted_nums.end());
+    int cnt = 0;
+    for (int i = 0; i < n; ++i) {
+        if (sorted_nums[i] != nums[i]) ++cnt;
+    }
+    string ans = cnt <= 2 ? "YES" : "NO";
+    cout << ans << endl;
     return 0;
 }
