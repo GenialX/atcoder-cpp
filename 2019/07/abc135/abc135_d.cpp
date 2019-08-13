@@ -1,53 +1,76 @@
-#include <functional>
-#include <algorithm>
-#include <stdexcept>
-#include <iostream>
-#include <sstream>
-#include <fstream>
-#include <numeric>
-#include <iomanip>
-#include <cstdlib>
-#include <cstring>
-#include <utility>
-#include <cctype>
-#include <vector>
-#include <string>
-#include <bitset>
-#include <cmath>
-#include <queue>
-#include <stdio.h>
-#include <stack>
-#include <ctime>
-#include <list>
-#include <map>
-#include <set>
-#include <unordered_map>
-#include <unordered_set>
-#include <assert.h>
-#define REP(i,n) for(int i=0;i<n;i++)
-#define TR(i,x) for(__typeof(x.begin()) i=x.begin();i!=x.end();i++)
-#define ALL(x) x.begin(),x.end()
-#define SORT(x) sort(ALL(x))
-#define CLEAR(x) memset(x,0,sizeof(x))
-#define FILL(x,c) memset(x,c,sizeof(x))
-#define PB push_back
-#define MP make_pair
-
+#pragma GCC optimize ("O3")
+#pragma GCC target ("sse4")
+ 
+#include <bits/stdc++.h>
+#include <ext/pb_ds/tree_policy.hpp>
+#include <ext/pb_ds/assoc_container.hpp>
+ 
 using namespace std;
-
-const double eps = 1e-8;
-
-typedef map<int,int> MII;
-typedef map<string,int> MSI;
-typedef vector<int> VI;
-typedef vector<string> VS;
-typedef vector<long double> VD;
-typedef pair<int,int> PII;
-typedef long long int64;
-typedef long long LL;
-typedef unsigned int UI;
-typedef long double LD;
-
+using namespace __gnu_pbds;
+ 
+typedef long long ll;
+typedef long double ld;
+typedef complex<ld> cd;
+ 
+typedef pair<int, int> pi;
+typedef pair<ll,ll> pl;
+typedef pair<ld,ld> pd;
+ 
+typedef vector<int> vi;
+typedef vector<ld> vd;
+typedef vector<ll> vl;
+typedef vector<pi> vpi;
+typedef vector<pl> vpl;
+typedef vector<cd> vcd;
+ 
+template <class T> using Tree = tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update>;
+ 
+#define FOR(i, a, b) for (int i=a; i<(b); i++)
+#define F0R(i, a) for (int i=0; i<(a); i++)
+#define FORd(i,a,b) for (int i = (b)-1; i >= a; i--)
+#define F0Rd(i,a) for (int i = (a)-1; i >= 0; i--)
+ 
+#define sz(x) (int)(x).size()
+#define mp make_pair
+#define pb push_back
+#define f first
+#define s second
+#define lb lower_bound
+#define ub upper_bound
+#define all(x) x.begin(), x.end()
+#define shandom_ruffle random_shuffle
+ 
+const int MOD = 1000000007;
+const ll INF = 1e18;
+const int MX = 100001; //check the limits, dummy
+ 
 int main() {
+    ios_base::sync_with_stdio(0); cin.tie(0);
+
+    string s; cin >> s;
+    int n = s.size();
+    ll dp[n+1][13];
+    FOR(i, n + 1) {
+        FOR(i, n + 1) {
+            dp[i][j] = 0;
+        }
+    }
+    dp[0][0] = 1;
+
+    FOR(i, N) {
+        FOR(j, 10) {
+            int c = s[i] - '0';
+            if (c == '?') c = j;
+            FOR(k, 13) {
+                int rem = (10 * k + j) % 13;
+                dp[i + 1][rem] += dp[i][k];
+                dp[i + 1][rem] %= MOD;
+            }
+            if (s[i] != '?') break;
+        }
+    }
+
+    cout << dp[n][5] << endl;
+
     return 0;
 }
