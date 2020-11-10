@@ -1,11 +1,11 @@
-// WA
+// AC
 // Bad Solution
-// Great Solution https://atcoder.jp/contests/abc182/submissions/17998964
+// Great Solution p5_2.cpp
 #include<bits/stdc++.h>
 using namespace std;
-const int N = 1510;
+const int N = 1510, M = 5e5 + 5;
 int h,w,n,m;
-int a[N], b[N], c[N], d[N];
+int a[M], b[M], c[M], d[M];
 int g[N][N]; // 1 for blocks, 2 for bulbs, 0 for nothing
 vector<int> cbb[N], rbb[N], cbk[N], rbk[N];
 int main() {
